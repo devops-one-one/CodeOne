@@ -1,0 +1,87 @@
+.card {
+  width: 100%;
+  height: 180px;
+  padding: 20px;
+
+  border-radius: 15px;
+
+  background-color: white;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+  cursor: pointer;
+}
+
+p {
+  text-align: left;
+  margin-block: 7px;
+  background-color: white;
+}
+
+.title {
+  font-weight: bolder;
+  font-size: 1.5rem;
+  padding: 0px;
+  margin-block: 0px;
+}
+
+.description {
+}
+
+.number {
+  margin-top: 20px;
+}
+
+.public {
+  color: #6C6C6C;
+}
+
+.practise-btn {
+  display: inline-block;
+  width: 100px;
+  color: mediumpurple;
+  background-color: white;
+  margin-left: 5px;
+}
+
+#circle {
+  position: relative;
+
+  width: 1rem;
+  height: 1rem;
+  padding: 5px;
+
+  border-radius: 50%;
+
+  background: mediumpurple;
+  color: white;
+}
+
+#triangle-right {
+  position: absolute;
+
+  width: 0;
+  height: 0;
+  border-top: 0.5rem solid transparent;
+  border-left: 1rem solid white;
+  border-bottom: 0.5rem solid transparent;
+  border-radius: 4px;
+  background-color: mediumpurple;
+}
+
+.practise {
+  text-align: left;
+  background-color: white;
+  width: 150px;
+}
+
+.practise:hover #triangle-right{
+  background-color: rebeccapurple;
+}
+
+.practise:hover #circle{
+  background-color: rebeccapurple;
+}
+
+.practise:hover .practise-btn{
+  color: rebeccapurple;
+}

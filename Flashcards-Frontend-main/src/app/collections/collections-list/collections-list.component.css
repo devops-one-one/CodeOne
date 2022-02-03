@@ -1,0 +1,128 @@
+.background {
+  margin: 0;
+  padding: 0;
+  background-color: #F5F6FA;
+  height: 100vh;
+  background-image: url("../../../assets/Images/blob-scene-haikei.svg");
+  background-size: cover;
+}
+
+.collections {
+  text-align: center;
+  padding-top: 15vh;
+}
+
+.item {
+  display: inline-block;
+}
+
+.my-coll {
+  margin-right: 20px;
+  cursor: pointer;
+  transition: font-size 0.3s, color 0.5s;
+}
+
+.pub-coll {
+  margin-left: 20px;
+  cursor: pointer;
+  transition: font-size 0.3s, color 0.5s;
+}
+
+.plus-icon {
+  height: 2rem;
+  width: 2rem;
+  display: inline-block;
+  background-color: #D2D2DD;
+  color: white;
+  font-size: 2rem;
+  line-height: 2rem;
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+
+  margin-right: 20px;
+  transition: background-color 0.5s;
+}
+
+.plus-icon:hover {
+  background-color: mediumpurple;
+}
+
+.decks-list {
+  height: 57vh;
+  display: grid;
+  grid-template-columns: 300px 300px 300px ;
+  grid-gap: 30px;
+  justify-content: center;
+  overflow-y:auto;
+  align-items: start;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search {
+  padding: 5px;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 15px;
+  border-color: #D2D2DD;
+  text-align: left;
+  width: 300px;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  margin-bottom: 5px;
+}
+
+
+/* The Modal (background) */
+.modal {
+  display: block; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  margin: 15% auto; /* 15% from the top and centered */
+  background-color: transparent;
+  width: 30vw;
+
+  position: relative;
+
+  animation-name: popup;
+  animation-duration: 0.8s;
+}
+
+@keyframes popup {
+  from {top: -80px; opacity: 0;}
+  to {top: 0;opacity: 100;}
+}
+
+.page-nav {
+  display: inline-block;
+  padding: 10px;
+  cursor: pointer;
+  color: #6C6C6C;
+
+}
+
+.no-decks-info {
+  text-align: center;
+  margin: auto;
+  margin-inline: auto;
+  width: 70vw;
+}
+
+
+
+
