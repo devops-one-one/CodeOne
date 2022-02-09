@@ -38,8 +38,8 @@ namespace GymOneBackend.Repository
                     {
                         Reps = new Random().Next(2, 5), // [2; 5)
                         Exercise = exercise1,
-                        Weight = new Random().Next(30, 90),
-                        //idk what dates
+                        Weight = new Random().Next(30, 90), // weight between [30; 90)
+                        //idk what dates should i should put
                     };
                 }
             }
