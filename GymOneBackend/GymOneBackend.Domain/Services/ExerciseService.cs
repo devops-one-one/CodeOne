@@ -23,5 +23,10 @@ namespace GymOneBackend.Domain.Services
     {
       return _repo.getAllExercises();
     }
+
+    public Exercise CreateExercise(Exercise exercise)
+    {
+      throw new System.NotImplementedException();
+    }
   }
 }
