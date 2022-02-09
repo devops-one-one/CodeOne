@@ -7,6 +7,5 @@ namespace GymOneBackend.WebAPI.Controllers
   public class ExerciseController: ControllerBase
   {
     
-   
   }
 }
