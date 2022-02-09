@@ -1,0 +1,14 @@
+using Microsoft.VisualBasic;
+
+namespace GymOneBackend.Core.Model
+{
+  public class ExerciseSet
+  {
+    public int SetId { get; set; }
+    public int UserId { get; set; }
+    public Exercise Exercise { get; set; }
+    public double Weight { get; set; }
+    public int  Reps { get; set; }
+    public DateAndTime Time { get; set; }
+  }
+}

@@ -1,17 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.14" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\GymOneBackend.Core\GymOneBackend.Core.csproj" />
       <ProjectReference Include="..\GymOneBackend.Domain\GymOneBackend.Domain.csproj" />
-      <ProjectReference Include="..\GymOneBackend.Repository\GymOneBackend.Repository.csproj" />
     </ItemGroup>
 
 </Project>
