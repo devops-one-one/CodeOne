@@ -7,5 +7,6 @@ namespace GymOneBackend.Core.IServices
   public interface ISetExerciseService
   {
     List<ExerciseSet> GetSetsForDayAndUser(int userId, DateAndTime date);
+    void CreateSetExercise(List<ExerciseSet> listSets);
   }
 }

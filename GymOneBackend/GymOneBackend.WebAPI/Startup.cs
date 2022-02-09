@@ -2,6 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GymOneBackend.Core.IServices;
+using GymOneBackend.Domain.IRepositories;
+using GymOneBackend.Domain.Services;
+using GymOneBackend.Repository.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +36,12 @@ namespace GymOneBackend.WebAPI
         c.SwaggerDoc("v1",
           new OpenApiInfo {Title = "GymOneBackend.WebAPI", Version = "v1"});
       });
+      
+      services.AddScoped<IExerciseService, ExerciseService>();
+      services.AddScoped<IExerciseRepository, ExerciseRepository>();
+      services.AddScoped<ISetExerciseService, SetExerciseService>();
+      services.AddScoped<ISetExerciseRepository, SetExerciseRepository>();
+
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

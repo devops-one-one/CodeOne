@@ -15,7 +15,7 @@ namespace GymOneBackend.Domain.Services
     {
       if (setExerciseRepository == null)
       {
-        throw new InvalidDataException("Exercise repo cannot be Null");
+        throw new InvalidDataException("SetExercise repo cannot be Null");
       }
       _repo = setExerciseRepository;
     }
@@ -23,6 +23,11 @@ namespace GymOneBackend.Domain.Services
     public List<ExerciseSet> GetSetsForDayAndUser(int userId, DateAndTime date)
     {
       return _repo.GetSetsForUserAndDate(userId, date);
+    }
+
+    public void CreateSetExercise(List<ExerciseSet> listSets)
+    {
+      _repo.CreateSetExercise(listSets);
     }
   }
 }

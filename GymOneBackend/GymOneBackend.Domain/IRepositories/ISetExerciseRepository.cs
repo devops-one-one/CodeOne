@@ -7,5 +7,6 @@ namespace GymOneBackend.Domain.IRepositories
   public interface ISetExerciseRepository
   {
     List<ExerciseSet> GetSetsForUserAndDate(int userId, DateAndTime date);
+    void CreateSetExercise(List<ExerciseSet> listSets);
   }
 }
