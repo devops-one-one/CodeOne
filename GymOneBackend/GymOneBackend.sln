@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymOneBackend.Core", "GymOn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymOneBackend.WebAPI", "GymOneBackend.WebAPI\GymOneBackend.WebAPI.csproj", "{4D15A978-BE94-4D4A-8612-04A38F3EC45F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymOneBackend.Domain", "GymOneBackend.Domain\GymOneBackend.Domain.csproj", "{C2950E3C-C843-4EDB-B03A-9ED53F0F28F3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,9 +24,14 @@ Global
 		{4D15A978-BE94-4D4A-8612-04A38F3EC45F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D15A978-BE94-4D4A-8612-04A38F3EC45F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D15A978-BE94-4D4A-8612-04A38F3EC45F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2950E3C-C843-4EDB-B03A-9ED53F0F28F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2950E3C-C843-4EDB-B03A-9ED53F0F28F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2950E3C-C843-4EDB-B03A-9ED53F0F28F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2950E3C-C843-4EDB-B03A-9ED53F0F28F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{83240838-F16B-46C1-A360-C0CD80FDE1CE} = {84716B03-A0C4-4420-B2DD-2B47AB68702A}
 		{4D15A978-BE94-4D4A-8612-04A38F3EC45F} = {20C2FDED-7F78-46AB-8638-B78A7FD329B6}
+		{C2950E3C-C843-4EDB-B03A-9ED53F0F28F3} = {84716B03-A0C4-4420-B2DD-2B47AB68702A}
 	EndGlobalSection
 EndGlobal
