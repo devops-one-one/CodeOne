@@ -50,7 +50,7 @@ namespace GymOneBackend.WebAPI
       services.AddScoped<ISetExerciseRepository, SetExerciseRepository>();
 
       services.AddDbContext<MainDBContext>(options => { options.UseSqlite("Data Source=main.db"); });
-      
+
       services.AddScoped<ISecurityServices, SecurityServices>();
       services.AddScoped<IUserRepository, UserRepository>();
       services.AddScoped<IAuthenticationHelper, AuthenticationHelper>();
@@ -59,11 +59,12 @@ namespace GymOneBackend.WebAPI
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env,  MainDBContext context)
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env,  MainDBContext context, SecurityContext securityContext)
     {
       if (env.IsDevelopment())
       {
         app.UseDeveloperExceptionPage();
+        new SecuritySeeder().Initialize(securityContext);
         app.UseSwagger();
         app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json",
           "GymOneBackend.WebAPI v1"));
