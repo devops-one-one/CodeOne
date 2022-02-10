@@ -7,6 +7,11 @@ using GymOneBackend.Domain.IRepositories;
 using GymOneBackend.Domain.Services;
 using GymOneBackend.Repository;
 using GymOneBackend.Repository.Repositories;
+using GymOneBackend.Security;
+using GymOneBackend.Security.Helpers;
+using GymOneBackend.Security.IServices;
+using GymOneBackend.Security.Repositories;
+using GymOneBackend.Security.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -45,6 +50,12 @@ namespace GymOneBackend.WebAPI
       services.AddScoped<ISetExerciseRepository, SetExerciseRepository>();
 
       services.AddDbContext<MainDBContext>(options => { options.UseSqlite("Data Source=main.db"); });
+      
+      services.AddScoped<ISecurityServices, SecurityServices>();
+      services.AddScoped<IUserRepository, UserRepository>();
+      services.AddScoped<IAuthenticationHelper, AuthenticationHelper>();
+      
+      services.AddDbContext<SecurityContext>(options => { options.UseSqlite("Data Source = auth.db"); });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

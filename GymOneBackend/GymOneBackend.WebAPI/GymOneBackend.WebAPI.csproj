@@ -13,6 +13,7 @@
       <ProjectReference Include="..\GymOneBackend.Core\GymOneBackend.Core.csproj" />
       <ProjectReference Include="..\GymOneBackend.Domain\GymOneBackend.Domain.csproj" />
       <ProjectReference Include="..\GymOneBackend.Repository\GymOneBackend.Repository.csproj" />
+      <ProjectReference Include="..\GymOneBackend.Security\GymOneBackend.Security.csproj" />
     </ItemGroup>
 
 </Project>
