@@ -3,13 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import {HomeComponent} from "./home/home.component";
 import {LiftsComponent} from "./lifts/lifts.component";
 import {BodyComponent} from "./body/body.component";
-import {LoginComponent} from "./login/login.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'lifts', component: LiftsComponent },
   { path: 'body', component: BodyComponent },
-  { path: 'login', component: LoginComponent },
+  {
+    path: "auth",
+    loadChildren: () => import('./auth/auth.module')
+      .then(f=>f.AuthModule)
+  },
 
   { path: '**', redirectTo: 'home' },
 ];
