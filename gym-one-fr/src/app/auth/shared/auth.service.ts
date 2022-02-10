@@ -9,7 +9,7 @@ import {take, tap} from "rxjs/operators";
 
 const jwtToken = 'jwtToken';
 const userId = 'userId';
-const username = 'username';
+const email = 'email';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +29,7 @@ export class AuthService {
           if(token && token.jwt){
             localStorage.setItem(jwtToken, token.jwt);
             localStorage.setItem(userId, token.userId.toString());
-            localStorage.setItem(username, loginDto.username.toString());
+            localStorage.setItem(email, loginDto.email.toString());
             this.isLoggedIn$.next(token.jwt);
             this.isLoggedIn = true;
           }else {
@@ -48,6 +48,7 @@ export class AuthService {
   logout(): Observable<boolean> {
     localStorage.removeItem(userId);
     localStorage.removeItem(jwtToken);
+    localStorage.removeItem(email)
     this.isLoggedIn$.next(null);
     this.isLoggedIn = false;
     return of(true).pipe(take(1));

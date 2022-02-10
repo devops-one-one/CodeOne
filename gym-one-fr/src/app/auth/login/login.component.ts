@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
 
   loginForm = this._fb.group({
 
-    username: new FormControl(
+    email: new FormControl(
       '',
       [
         Validators.required,
@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  get username() {return this.loginForm.get('username')}
+  get email() {return this.loginForm.get('email')}
   get password() {return this.loginForm.get('password')}
 
 }
