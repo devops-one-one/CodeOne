@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using GymOneBackend.Core.IServices;
 using GymOneBackend.Domain.IRepositories;
 using GymOneBackend.Domain.Services;
+using GymOneBackend.Repository;
 using GymOneBackend.Repository.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -42,10 +44,11 @@ namespace GymOneBackend.WebAPI
       services.AddScoped<ISetExerciseService, SetExerciseService>();
       services.AddScoped<ISetExerciseRepository, SetExerciseRepository>();
 
+      services.AddDbContext<MainDBContext>(options => { options.UseSqlite("Data Source=main.db"); });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env,  MainDBContext context)
     {
       if (env.IsDevelopment())
       {
@@ -53,6 +56,7 @@ namespace GymOneBackend.WebAPI
         app.UseSwagger();
         app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json",
           "GymOneBackend.WebAPI v1"));
+        new DbSeeder(context).SeedDevelopment();
       }
 
       app.UseHttpsRedirection();
