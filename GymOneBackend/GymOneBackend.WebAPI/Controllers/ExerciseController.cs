@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using GymOneBackend.Core.IServices;
 using GymOneBackend.Core.Model;
@@ -31,6 +32,17 @@ namespace GymOneBackend.WebAPI.Controllers
       };
       return _service.CreateExercise(exercise);
     }
-   
+
+    [HttpDelete("{id}")]
+    public ActionResult<Exercise> DeleteExercise(int id)
+    {
+      var deletedItem = _service.DeleteExercise(id);
+      if (deletedItem)
+      {
+        return Ok("Exercise was deleted");
+      }
+      return BadRequest("Exercise couldn't be deleted");
+    }
+
   }
 }

@@ -28,5 +28,10 @@ namespace GymOneBackend.Domain.Services
     {
       throw new System.NotImplementedException();
     }
+
+    public bool DeleteExercise(int id)
+    {
+      throw new System.NotImplementedException();
+    }
   }
 }

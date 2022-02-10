@@ -8,5 +8,7 @@ namespace GymOneBackend.Core.IServices
     List<Exercise> GetAllExercises();
 
     Exercise CreateExercise(Exercise exercise);
+
+    bool DeleteExercise(int id);
   }
 }
