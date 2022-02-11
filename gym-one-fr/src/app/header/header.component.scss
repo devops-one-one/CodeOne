@@ -21,7 +21,7 @@ body{
 .wrapper .sidebar{
   width: 200px;
   height: 100%;
-  background: #476950;
+  background: cadetblue;
   padding: 30px 0px;
   position: fixed;
 }
@@ -42,7 +42,7 @@ body{
 }
 
 .wrapper .sidebar ul li a{
-  color: #bdb8d7;
+  color: ghostwhite;
   display: block;
   padding-left: 10px;
 }
@@ -52,11 +52,11 @@ body{
 }
 
 .wrapper .sidebar ul li:hover{
-  background-color: #476950;
+  background-color: cadetblue;
 }
 
 .wrapper .sidebar ul li:hover a{
-  color: #fff;
+  color: grey;
 }
 
 .wrapper .sidebar .social_media{
@@ -73,7 +73,7 @@ body{
 
 .wrapper .main_content .info{
   margin: 20px;
-  color: #717171;
+  color: ghostwhite;
   line-height: 25px;
 }
 
