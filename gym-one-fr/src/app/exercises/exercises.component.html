@@ -1,7 +1,21 @@
-
-
 <div class="exercise-container">
-  <input type="date" [(ngModel)]="inputDate">
 
+  <input type="date" [(ngModel)]="inputDate" (ngModelChange)="onValueChanged()">
+  <div *ngFor="let set of exerciseSets" class="exercise-item">
+    <h4>{{set.exerciseName}}</h4>
+    <hr>
+    <div class="exercise-set">
+      <div class="kg-info">
+        <p>{{set.weight}} kg</p>
+      </div>
+      <div class="reps-info">
+        <p>{{set.reps}} reps</p>
+      </div>
+    </div>
+  </div>
+  <button>
+    <p style="cursor: default">Add More</p>
+  </button>
 </div>
+
 

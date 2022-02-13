@@ -18,7 +18,7 @@ import {FormsModule} from "@angular/forms";
     HomeComponent,
     LiftsComponent,
     BodyComponent,
-    ExercisesComponent,
+    ExercisesComponent
   ],
   imports: [
     BrowserModule,

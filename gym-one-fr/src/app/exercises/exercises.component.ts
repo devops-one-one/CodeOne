@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ExerciseService} from "./shared/exercise.service";
+import {ExerciseSetDto} from "./shared/exercise.set.dto";
 
 @Component({
   selector: 'app-exercises',
@@ -7,17 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExercisesComponent implements OnInit {
   inputDate: any;
+  exerciseSets: ExerciseSetDto[] = [];
 
-  constructor() {
+  constructor(private _exerciseService:ExerciseService) {
   }
 
   ngOnInit(): void {
+    this.inputDate = this.currentDateAsString();
+    this.exerciseSets = this._exerciseService.getExerciseSets();
+  }
+  currentDateAsString():string{
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
     var yyyy = today.getFullYear();
 
-    this.inputDate = `${yyyy}-${mm}-${dd}`;
+    return `${yyyy}-${mm}-${dd}`;
   }
 
+  onValueChanged() {
+    var date = this.inputDate as Date;
+    //TODO retrieve exercise sets by date from backend
+  }
 }
