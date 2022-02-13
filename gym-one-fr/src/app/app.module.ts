@@ -8,6 +8,8 @@ import { HomeComponent } from './home/home.component';
 import { LiftsComponent } from './lifts/lifts.component';
 import { BodyComponent } from './body/body.component';
 import {HttpClientModule} from "@angular/common/http";
+import { ExercisesComponent } from './exercises/exercises.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -16,11 +18,13 @@ import {HttpClientModule} from "@angular/common/http";
     HomeComponent,
     LiftsComponent,
     BodyComponent,
+    ExercisesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
