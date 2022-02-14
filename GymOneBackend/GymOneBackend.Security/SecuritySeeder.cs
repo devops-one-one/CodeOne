@@ -26,7 +26,6 @@ namespace GymOneBackend.Security
             authenticationHelper.CreatePasswordHash(password, out var pass, out var salt);
             context.LoginUsers.Add(new LoginUser()
             {
-                
                 Email = "user1",
                 PasswordHash = pass,
                 PasswordSalt = salt,
@@ -38,11 +37,9 @@ namespace GymOneBackend.Security
             authenticationHelper.CreatePasswordHash(password2, out var pass2, out var salt2);
             context.LoginUsers.Add(new LoginUser()
             {
-                //  Role = "User",
                 Email = "user2",
                 PasswordHash = pass2,
                 PasswordSalt = salt2,
-
             });
             context.SaveChanges();
         }
