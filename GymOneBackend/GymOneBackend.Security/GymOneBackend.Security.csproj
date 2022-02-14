@@ -6,6 +6,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\GymOneBackend.Domain\GymOneBackend.Domain.csproj" />
+      <ProjectReference Include="..\GymOneBackend.Repository\GymOneBackend.Repository.csproj" />
     </ItemGroup>
 
     <ItemGroup>

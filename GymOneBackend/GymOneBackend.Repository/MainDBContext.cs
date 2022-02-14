@@ -12,5 +12,6 @@ namespace GymOneBackend.Repository
     public DbSet<ExerciseEntity> Exercise { get; set; }
     public DbSet<MuscleGroupEntity> MuscleGroup { get; set; }
     public DbSet<ExerciseSetEntity> ExerciseSet { get; set; }
+    public virtual DbSet<UserEntity> Users { get; set; }
   }
 }
