@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using GymOneBackend.Repository.Entities;
 
 namespace GymOneBackend.Repository
@@ -12,6 +13,44 @@ namespace GymOneBackend.Repository
             _ctx = ctx;
         }
 
+        public void SeedDevelopment(int boo)
+        {
+            _ctx.Database.EnsureDeleted();
+            _ctx.Database.EnsureCreated();
+
+            var chest = _ctx.MuscleGroup
+                .Add(new MuscleGroupEntity {MuscleGroupName = "the chest"}).Entity;
+            
+            var shoul = _ctx.MuscleGroup
+                .Add(new MuscleGroupEntity {MuscleGroupName = "the shoulders"}).Entity;
+
+            //_ctx.SaveChanges();
+            
+            var chestEx = CreateExercise(chest);
+            var shoulEx = CreateExercise(shoul);
+
+            //_ctx.SaveChanges();
+
+            _ctx.ExerciseSet.Add(new ExerciseSetEntity{Exercise = chestEx[0], Reps = 7, Weight = 20.0, Time = DateTime.Now});
+            _ctx.ExerciseSet.Add(new ExerciseSetEntity{Exercise = chestEx[1], Reps = 7, Weight = 20.0, Time = DateTime.Now});
+            _ctx.ExerciseSet.Add(new ExerciseSetEntity{Exercise = shoulEx[0], Reps = 7, Weight = 20.0, Time = DateTime.Now});
+            _ctx.ExerciseSet.Add(new ExerciseSetEntity{Exercise = shoulEx[1], Reps = 7, Weight = 20.0, Time = DateTime.Now});
+
+            _ctx.SaveChanges();
+        }
+
+        private List<ExerciseEntity> CreateExercise(MuscleGroupEntity mG)
+        {
+            var list = new List<ExerciseEntity>();
+            list
+                .Add(_ctx.Exercise
+                    .Add(new ExerciseEntity
+                    {ExerciseName = "Exercise 1", MuscleGroupEntity = mG}).Entity);
+            list.Add(_ctx.Exercise.Add(new ExerciseEntity
+                {ExerciseName = "Exercise 2", MuscleGroupEntity = mG}).Entity);
+            return list;
+        }
+
         public  void SeedDevelopment()
         {
             _ctx.Database.EnsureDeleted();
@@ -22,6 +61,8 @@ namespace GymOneBackend.Repository
             {
                 _ctx.MuscleGroup.Add(musclee);
             }
+
+            _ctx.SaveChanges();
 
             var chestExercises = CreateChestExercies(muscleGroups[0]);
             var armExercies = CreateArmExercies(muscleGroups[3]);
@@ -80,12 +121,12 @@ namespace GymOneBackend.Repository
         {
             return new[]
             {
-                new MuscleGroupEntity {MuscleGroupId = "the chest"},
-                new MuscleGroupEntity {MuscleGroupId = "the shoulders"},
-                new MuscleGroupEntity {MuscleGroupId = "the back"},
-                new MuscleGroupEntity {MuscleGroupId = "the arms"},
-                new MuscleGroupEntity {MuscleGroupId = "the abs"},
-                new MuscleGroupEntity {MuscleGroupId = "the legs"},
+                new MuscleGroupEntity {MuscleGroupName = "the chest"},
+                new MuscleGroupEntity {MuscleGroupName = "the shoulders"},
+                new MuscleGroupEntity {MuscleGroupName = "the back"},
+                new MuscleGroupEntity {MuscleGroupName = "the arms"},
+                new MuscleGroupEntity {MuscleGroupName = "the abs"},
+                new MuscleGroupEntity {MuscleGroupName = "the legs"},
             };
         }
     }
