@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using GymOneBackend.Core.Model;
 using GymOneBackend.Domain.IRepositories;
 
@@ -19,7 +20,17 @@ namespace GymOneBackend.Repository.Repositories
     }
     public List<Exercise> getAllExercises()
     {
-      throw new System.NotImplementedException();
+      return _ctx.Exercise
+        .Select(e => new Exercise()
+        {
+          ExerciseId = e.Id,
+          ExerciseName = e.ExerciseName,
+          MuscleGroup = new MuscleGroup()
+            {
+              Id = e.MuscleGroupEntity.Id,
+              MuscleGroupId = e.MuscleGroupEntity.MuscleGroupName
+            }
+        }).ToList();
     }
   }
 }

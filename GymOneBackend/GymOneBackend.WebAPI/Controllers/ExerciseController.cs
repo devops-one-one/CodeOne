@@ -13,7 +13,11 @@ namespace GymOneBackend.WebAPI.Controllers
   public class ExerciseController: ControllerBase
   {
     private readonly IExerciseService _service;
-    
+
+    public ExerciseController(IExerciseService service)
+    {
+      _service = service;
+    }
     
     [HttpGet]
     public ActionResult<List<Exercise>> GetAllExercises()
