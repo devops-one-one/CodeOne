@@ -9,7 +9,7 @@ namespace GymOneBackend.Repository.Repositories
   {
     private readonly MainDBContext _ctx;
 
-    ExerciseRepository(MainDBContext ctx)
+    public ExerciseRepository(MainDBContext ctx)
     {
       if (ctx == null)
       {
