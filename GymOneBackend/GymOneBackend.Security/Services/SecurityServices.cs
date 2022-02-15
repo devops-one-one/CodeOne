@@ -35,7 +35,7 @@ namespace GymOneBackend.Security.Services
             if(user == null)
                 return new JwtToken()
                 {
-                    Message = "User or password not correct"
+                    Message = "Email or password not correct"
                 };
 
             
@@ -63,7 +63,7 @@ namespace GymOneBackend.Security.Services
             //dont need else
             return new JwtToken()
             {
-                Message = "User or password not correct"
+                Message = "Email or password not correct"
             };
         }
 
