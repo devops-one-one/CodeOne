@@ -39,7 +39,6 @@ namespace GymOneBackend.Security.Services
                 };
 
             
-            //Did we not find a user with the given username?
             if (_authenticationHelper.VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt)
                )
             {
