@@ -5,6 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.14" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.14" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
     </ItemGroup>
@@ -13,6 +14,7 @@
       <ProjectReference Include="..\GymOneBackend.Core\GymOneBackend.Core.csproj" />
       <ProjectReference Include="..\GymOneBackend.Domain\GymOneBackend.Domain.csproj" />
       <ProjectReference Include="..\GymOneBackend.Repository\GymOneBackend.Repository.csproj" />
+      <ProjectReference Include="..\GymOneBackend.Security\GymOneBackend.Security.csproj" />
     </ItemGroup>
 
 </Project>
