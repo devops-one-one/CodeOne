@@ -31,10 +31,14 @@ namespace GymOneBackend.Repository
 
             //_ctx.SaveChanges();
 
-            _ctx.ExerciseSet.Add(new ExerciseSetEntity{Exercise = chestEx[0], Reps = 7, Weight = 20.0, Time = DateTime.Now});
-            _ctx.ExerciseSet.Add(new ExerciseSetEntity{Exercise = chestEx[1], Reps = 7, Weight = 20.0, Time = DateTime.Now});
-            _ctx.ExerciseSet.Add(new ExerciseSetEntity{Exercise = shoulEx[0], Reps = 7, Weight = 20.0, Time = DateTime.Now});
-            _ctx.ExerciseSet.Add(new ExerciseSetEntity{Exercise = shoulEx[1], Reps = 7, Weight = 20.0, Time = DateTime.Now});
+            _ctx.Users.Add(new UserEntity() {Id = 1, Email = "@yourMom"});
+
+            _ctx.SaveChanges();
+
+            _ctx.ExerciseSet.Add(new ExerciseSetEntity{Exercise = chestEx[0], Reps = 7, UserEntityId = 1, Weight = 20.0, Time = DateTime.Now});
+            _ctx.ExerciseSet.Add(new ExerciseSetEntity{Exercise = chestEx[1], Reps = 7, UserEntityId = 1, Weight = 20.0, Time = DateTime.Now});
+            _ctx.ExerciseSet.Add(new ExerciseSetEntity{Exercise = shoulEx[0], Reps = 7, UserEntityId = 1, Weight = 20.0, Time = DateTime.Now});
+            _ctx.ExerciseSet.Add(new ExerciseSetEntity{Exercise = shoulEx[1], Reps = 7, UserEntityId = 1, Weight = 20.0, Time = DateTime.Now});
 
             _ctx.SaveChanges();
         }

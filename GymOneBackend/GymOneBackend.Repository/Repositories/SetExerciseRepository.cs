@@ -1,7 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using GymOneBackend.Core.Model;
 using GymOneBackend.Domain.IRepositories;
+using GymOneBackend.Repository.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
 
 namespace GymOneBackend.Repository.Repositories
@@ -20,14 +24,37 @@ namespace GymOneBackend.Repository.Repositories
       _ctx = ctx;
     }
     
-    public List<ExerciseSet> GetSetsForUserAndDate(int userId, DateAndTime date)
+    public List<ExerciseSet> GetSetsForUserAndDate(int userId, DateTime date)
     {
-      throw new System.NotImplementedException();
+      var br = _ctx.ExerciseSet.Select(e => new ExerciseSet()
+        {
+          UserId = e.UserEntityId,
+          SetId = e.Id,
+          Reps = e.Reps,
+          Weight = e.Weight,
+          Time = e.Time,
+        })
+        .Where(m => m.UserId == userId)
+        .Where(m => m.Time.Date == date.Date)
+        .ToList();
+
+      // Looking in the product of the select which is ExerciseSet Omg liturally took me like 10 sec to spot. 
+      return br;
     }
 
     public void CreateSetExercise(List<ExerciseSet> listSets)
     {
-      throw new System.NotImplementedException();
+      foreach (var set in listSets)
+      {
+        _ctx.ExerciseSet.Add(new ExerciseSetEntity()
+        {
+          UserEntityId = set.UserId,
+          ExerciseId = set.Exercise.ExerciseId,
+          Reps = set.Reps,
+          Weight = set.Weight,
+          Time = set.Time,
+        });
+      }
     }
   }
 }

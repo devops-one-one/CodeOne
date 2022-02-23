@@ -7,7 +7,8 @@ namespace GymOneBackend.Repository.Entities
   public class ExerciseSetEntity
   {
     public int Id { get; set; }
-    public int UserId { get; set; }
+    public UserEntity UserEntity { get; set; }
+    public int UserEntityId { get; set; }
     public ExerciseEntity Exercise { get; set; }
     public int ExerciseId { get; set; }
     public double Weight { get; set; }

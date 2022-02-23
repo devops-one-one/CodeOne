@@ -1,3 +1,4 @@
+using System;
 using Microsoft.VisualBasic;
 
 namespace GymOneBackend.Core.Model
@@ -9,6 +10,6 @@ namespace GymOneBackend.Core.Model
     public Exercise Exercise { get; set; }
     public double Weight { get; set; }
     public int  Reps { get; set; }
-    public DateAndTime Time { get; set; }
+    public DateTime Time { get; set; }
   }
 }

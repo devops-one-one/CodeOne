@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using GymOneBackend.Core.IServices;
@@ -20,7 +21,7 @@ namespace GymOneBackend.Domain.Services
       _repo = setExerciseRepository;
     }
     
-    public List<ExerciseSet> GetSetsForDayAndUser(int userId, DateAndTime date)
+    public List<ExerciseSet> GetSetsForDayAndUser(int userId, DateTime date)
     {
       return _repo.GetSetsForUserAndDate(userId, date);
     }
