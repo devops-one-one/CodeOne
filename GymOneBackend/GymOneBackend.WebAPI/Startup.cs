@@ -117,7 +117,8 @@ namespace GymOneBackend.WebAPI
         app.UseSwagger();
         app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json",
           "GymOneBackend.WebAPI v1"));
-        new DbSeeder(context).SeedDevelopment(1);
+        //new DbSeeder(context).SeedDevelopment(1);
+        new DbSeeder(context).SeedDevelopment();
       }
 
       app.UseHttpsRedirection();

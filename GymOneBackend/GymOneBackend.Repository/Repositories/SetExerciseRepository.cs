@@ -33,6 +33,7 @@ namespace GymOneBackend.Repository.Repositories
           Reps = e.Reps,
           Weight = e.Weight,
           Time = e.Time,
+          ExerciseId = e.ExerciseId
         })
         .Where(m => m.UserId == userId)
         .Where(m => m.Time.Date == date.Date)
@@ -49,7 +50,7 @@ namespace GymOneBackend.Repository.Repositories
         _ctx.ExerciseSet.Add(new ExerciseSetEntity()
         {
           UserEntityId = set.UserId,
-          ExerciseId = set.Exercise.ExerciseId,
+          ExerciseId = set.ExerciseId,
           Reps = set.Reps,
           Weight = set.Weight,
           Time = set.Time,

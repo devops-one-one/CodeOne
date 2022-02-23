@@ -7,7 +7,7 @@ namespace GymOneBackend.Repository
     public class DbSeeder
     {
         private  readonly MainDBContext _ctx;
-        
+
         public DbSeeder(MainDBContext ctx)
         {
             _ctx = ctx;
@@ -59,6 +59,11 @@ namespace GymOneBackend.Repository
         {
             _ctx.Database.EnsureDeleted();
             _ctx.Database.EnsureCreated();
+            
+            
+            _ctx.Users.Add(new UserEntity() {Id = 1, Email = "@yourMom"});
+
+            _ctx.SaveChanges();
 
             var muscleGroups = CreateMuscleGroups();
             foreach (var musclee in muscleGroups)
@@ -70,21 +75,23 @@ namespace GymOneBackend.Repository
 
             var chestExercises = CreateChestExercies(muscleGroups[0]);
             var armExercies = CreateArmExercies(muscleGroups[3]);
+            
 
-            var exercise = new ExerciseEntity[][] {chestExercises, armExercies};
-            ExerciseSetEntity[] exerciseSetEntities = new ExerciseSetEntity[exercise.Length];
+            var exercise = new [] {chestExercises, armExercies};
+            
+            var exerciseSetEntities = new ExerciseSetEntity[GetLength(exercise)]; // chestExercises.Length+armExercies.Length
             for (int i = 0, k=0; i < exercise.Length; i++)
             {
-                for (int j = 0; j < exercise[i].Length; j++)
+                for (var j = 0; j < exercise[i].Length; j++)
                 {
-                    var exercise1 = exercise[i][j];
-                    _ctx.Exercise.Add(exercise1);
+                    _ctx.Exercise.Add(exercise[i][j]);
                     exerciseSetEntities[k++] = new ExerciseSetEntity
                     {
                         Reps = new Random().Next(2, 5), // [2; 5)
-                        Exercise = exercise1,
+                        Exercise = exercise[i][j],
                         Weight = new Random().Next(30, 90), // weight between [30; 90)
-                        //idk what dates should i should put
+                        Time = DateTime.Now,
+                        UserEntityId = 1
                     };
                 }
             }
@@ -97,6 +104,18 @@ namespace GymOneBackend.Repository
             _ctx.SaveChanges();
         }
         
+
+        private int GetLength(ExerciseEntity[][] exercise)
+        {
+            var res = 0;
+            for (int i = 0; i < exercise.Length; i++)
+            {
+                res += exercise[i].Length;
+            }
+
+            return res;
+        }
+
         private ExerciseEntity[] CreateArmExercies(MuscleGroupEntity muscleGroup)
         {
             return new[]
