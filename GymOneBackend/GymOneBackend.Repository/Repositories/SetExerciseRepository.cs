@@ -56,6 +56,7 @@ namespace GymOneBackend.Repository.Repositories
           Time = set.Time,
         });
       }
+      _ctx.SaveChanges();
     }
   }
 }

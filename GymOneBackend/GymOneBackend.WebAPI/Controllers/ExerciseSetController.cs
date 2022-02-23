@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using GymOneBackend.Core.IServices;
 using GymOneBackend.Core.Model;
+using GymOneBackend.WebAPI.Dto;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,6 +31,20 @@ namespace GymOneBackend.WebAPI.Controllers
         }
 
         return BadRequest("missing userId");
+      }
+
+      [HttpPost]
+      public void AddExerciseSets(List<AddExSetDto> listOfSetsDto)
+      {
+        var listModels = listOfSetsDto.Select(t => new ExerciseSet()
+        {
+          UserId = t.UserId,
+          ExerciseId = t.ExerciseId,
+          Reps = t.Reps,
+          Weight = t.Weight,
+          Time = t.DateTime
+        }).ToList();
+        _service.CreateSetExercise(listModels);
       }
     }
 }
