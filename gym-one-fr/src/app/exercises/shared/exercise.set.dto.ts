@@ -1,8 +1,8 @@
 export interface ExerciseSetDto {
-  id: number,
-  exerciseName:string,
-  muscleGroupName:string,
+  setId: number,
+  userId:number,
+  exerciseId:number,
   weight:number,
   reps:number,
-  date:Date,
+  time:Date
 }
