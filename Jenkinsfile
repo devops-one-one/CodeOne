@@ -4,9 +4,9 @@ pipeline {
     pollSCM("* * * * *")
   }
   stages{
-    stage("OurFirstStage"){
+    stage("Build Backend"){
       steps{
-        echo "running"
+        sh "dotnet build GymOneBackend.WebAPI.csproj"
       }
     }
   }
