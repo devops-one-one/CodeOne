@@ -6,7 +6,7 @@ pipeline {
   stages{
     stage("Build Backend"){
       steps{
-        sh "dotnet build GymOneBackend.sln"
+        sh "dotnet build GymOneBackend/GymOneBackend.sln"
       }
     }
   }
