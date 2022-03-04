@@ -11,7 +11,7 @@ pipeline {
     }
         stage("Build Frontend"){
       steps{
-        sh "ng build gym-one-fr"
+        sh "ng build gym-one-fr/src/main.ts"
       }
     }
   }
