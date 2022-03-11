@@ -37,11 +37,11 @@ pipeline {
             sh "dotnet test --collect:'Xplat Code Coverage'"
           }
         }
-        post{
-          success{
-            //archiveArtifacts "GymOneBackend/TestResults/*/coverage.cobertura.xml"
-          }
-        }
+        //post{
+          //success{
+           // archiveArtifacts "GymOneBackend/TestResults/*/coverage.cobertura.xml";
+          //}
+         //}
       }
   }
 }
