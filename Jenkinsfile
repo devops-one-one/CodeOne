@@ -24,6 +24,7 @@ pipeline {
     stage("Build Frontend"){
           steps{
             dir('gym-one-fr') {
+              sh "npm update"
               sh "ng build --prod"
               }
       }
