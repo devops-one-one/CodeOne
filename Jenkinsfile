@@ -20,16 +20,10 @@ pipeline {
         sh "dotnet build GymOneBackend/GymOneBackend.sln"
       }
     }
-    stage("Build Frontend"){
-          steps{
-            dir('gym-one-fr') {
-              sh "ng build --prod"
-              }
-      }
-      }
+
       stage("Test"){
         steps{
-          dir("TestProject"){
+          dir("GymOneBackend.Core.Test"){
             sh "dotnet add package coverlet.collector"
             sh "dotnet test --collect:'Xplat Code Coverage'"
           }
@@ -39,6 +33,14 @@ pipeline {
             archiveArtifacts "TestProject1/TestReults/*/coverage.cobertura.xml"
           }
         }
+      }
+
+    stage("Build Frontend"){
+          steps{
+            dir('gym-one-fr') {
+              sh "ng build --prod"
+              }
+      }
       }
   }
 }
