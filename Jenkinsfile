@@ -45,12 +45,12 @@ pipeline {
            
          }
       }
-  }
-  stage("Discord Webhook"){
+    stage("Discord Webhook"){
     post {
     always {
       discordSend description: 'Jenkins Pipeline Build', footer: 'Footer Text', link: env.BUILD_URL, result: currentBuild.currentResult, unstable: false, title: JOB_NAME, webhookURL: 'https://discord.com/api/webhooks/951841947276959745/0KkehKY4mDYFjXJKybgjDMfyAiIjsh0z8Iyklb77yGYpDxEShcnSaGjqpksiklnO16VZ'
     }
+  }
   }
   }
 }
