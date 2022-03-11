@@ -5,13 +5,13 @@ namespace GymOneBackend.Core.Test.Models
 {
     public class ExerciseTest
     {
-        private Exercise _exercise;
-        [Fact]
-        public void Test1()
+        private readonly Exercise _exercise;
+
+        public ExerciseTest()
         {
             _exercise = new Exercise();
         }
-        
+
         [Fact]
         public void CustomerDetailClass_Exists()
         {
