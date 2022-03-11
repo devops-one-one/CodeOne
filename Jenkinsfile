@@ -4,12 +4,15 @@ pipeline {
     pollSCM("* * * * *")
   }
   environment {
-    COMMITMSG = sh("git log -1 --oneline")
+    COMMITMSG = sh(returnStdout: true, script: "git log -1 --oneline")
   }
   stages{
     stage("Startup"){
       steps{
         buildDescription env.COMMITMSG
+        dir("TestProject1"){
+          sh "rm -rf TestResults"
+        }
       }
     }
     stage("Build API"){
@@ -23,6 +26,19 @@ pipeline {
               sh "ng build --prod"
               }
       }
+      }
+      stage("Test"){
+        steps{
+          dir("TestProject"){
+            sh "dotnet add package coverlet.collector"
+            sh "dotnet test --collect:'Xplat Code Coverage'"
+          }
+        }
+        post{
+          success{
+            archiveArtifacts "TestProject1/TestReults/*/coverage.cobertura.xml"
+          }
+        }
       }
   }
 }
