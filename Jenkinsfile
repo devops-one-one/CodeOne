@@ -21,6 +21,14 @@ pipeline {
       }
     }
 
+    stage("Build Frontend"){
+          steps{
+            dir('gym-one-fr') {
+              sh "ng build --prod"
+              }
+      }
+      }
+
       stage("Test"){
         steps{
           dir("GymOneBackend/GymOneBackend.Core.Test"){
@@ -33,14 +41,6 @@ pipeline {
             archiveArtifacts "TestProject1/TestReults/*/coverage.cobertura.xml"
           }
         }
-      }
-
-    stage("Build Frontend"){
-          steps{
-            dir('gym-one-fr') {
-              sh "ng build --prod"
-              }
-      }
       }
   }
 }
