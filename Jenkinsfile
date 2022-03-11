@@ -39,7 +39,7 @@ pipeline {
         }
         post{
           success{
-            archiveArtifacts "TestProject1/TestReults/*/coverage.cobertura.xml"
+            //archiveArtifacts "GymOneBackend/TestResults/*/coverage.cobertura.xml"
           }
         }
       }
