@@ -3,8 +3,16 @@ pipeline {
   triggers {
     pollSCM("* * * * *")
   }
+  environment {
+    COMMITMSG = sh("git log -1 --oneline")
+  }
   stages{
-    stage("Build Backend"){
+    stage("Startup"){
+      steps{
+        buildDescription env.COMMITMSG
+      }
+    }
+    stage("Build API"){
       steps{
         sh "dotnet build GymOneBackend/GymOneBackend.sln"
       }
