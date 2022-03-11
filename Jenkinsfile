@@ -23,7 +23,7 @@ pipeline {
 
       stage("Test"){
         steps{
-          dir("GymOneBackend.Core.Test"){
+          dir("GymOneBackend/GymOneBackend.Core.Test"){
             sh "dotnet add package coverlet.collector"
             sh "dotnet test --collect:'Xplat Code Coverage'"
           }
