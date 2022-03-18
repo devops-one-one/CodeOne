@@ -38,11 +38,11 @@ export class RegisterComponent implements OnInit {
   register() {
     const registerDto = this.registerForm.value as LoginDto;
     this._auth.register(registerDto).subscribe(tokenDto=> {
-      this.router.navigateByUrl("collections")
+      this.router.navigateByUrl("Feed me with some direction")
     });
   }
 
-
+// you can use them to show some message if any Validators are missing.
   get email() {return this.registerForm.get('email')}
   get password() {return this.registerForm.get('password')}
 }

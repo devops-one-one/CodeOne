@@ -39,12 +39,6 @@ export class AuthService {
       )
   }
 
-
-  getToken(): string | null {
-    return localStorage.getItem(jwtToken);
-  }
-
-
   logout(): Observable<boolean> {
     localStorage.removeItem(userId);
     localStorage.removeItem(jwtToken);
@@ -52,5 +46,43 @@ export class AuthService {
     this.isLoggedIn$.next(null);
     this.isLoggedIn = false;
     return of(true).pipe(take(1));
+  }
+
+  register(loginDto: LoginDto): Observable<TokenDto>
+  {
+    return this._http.post<TokenDto>(environment.api+'/api/Auth/Register',loginDto)
+      .pipe(
+        tap(token =>{
+          if(token && token.jwt){
+            localStorage.setItem(jwtToken, token.jwt);
+            localStorage.setItem(userId, token.userId.toString());
+            localStorage.setItem(email, loginDto.email.toString());
+            this.isLoggedIn$.next(token.jwt);
+            this.isLoggedIn = true;
+          }else {
+            this.logout();
+          }
+        })
+      )
+  }
+// you can use it if you want to show username :)
+  getUserName(): string{
+    var emailAsString = localStorage.getItem(email);
+    if(emailAsString) {
+      return emailAsString;
+    }
+    return "";
+  }
+  // you can use it if you want to get the logged user data :)
+  getUserId(): number{
+    var userIdAsString = localStorage.getItem(userId);
+    if(userIdAsString) {
+      return +userIdAsString;
+    }
+    return -1
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem(jwtToken);
   }
 }
