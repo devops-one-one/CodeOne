@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GymOneBackend.WebAPI.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class AuthController : ControllerBase
     {
         private readonly ISecurityServices _securityService;
