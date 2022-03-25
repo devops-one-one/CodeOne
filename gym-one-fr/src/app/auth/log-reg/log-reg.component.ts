@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-//declare function myMethod(): any;
-
 @Component({
   selector: 'app-log-reg',
   templateUrl: './log-reg.component.html',
@@ -14,6 +12,8 @@ export class LogRegComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+
   toggleClass(){
     if(this.isFavorite){
       this.isFavorite = false;
