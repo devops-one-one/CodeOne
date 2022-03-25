@@ -98,6 +98,7 @@ input {
   width: 768px;
   max-width: 100%;
   min-height: 480px;
+  margin: auto;
 }
 
 .form-container {
@@ -255,4 +256,10 @@ footer i {
 footer a {
   color: #3c97bf;
   text-decoration: none;
+}
+
+.img-size{
+  width: 18px;
+  height: 18px;
+  filter: brightness(0) invert(0);
 }
