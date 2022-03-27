@@ -50,5 +50,18 @@ pipeline {
                 discordSend description: 'Jenkins Pipeline Build', footer: 'Footer Text', link: env.BUILD_URL, result: currentBuild.currentResult, unstable: false, title: JOB_NAME, webhookURL: 'https://discord.com/api/webhooks/951841947276959745/0KkehKY4mDYFjXJKybgjDMfyAiIjsh0z8Iyklb77yGYpDxEShcnSaGjqpksiklnO16VZ'
         }
           }
+
+      stage("Deploy"){
+            parallel{
+              stage("Frontend"){
+                steps{
+                  dir('gym-one-fr') {
+                   sh "docker build . -t frontend-app"
+                   sh "docker run --name frontend-app-container -d -p 8091:80 frontend-app"
+                  }
+                }
+              }
+            }
+          }
           }
           }
