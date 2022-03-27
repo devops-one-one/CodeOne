@@ -51,18 +51,17 @@ pipeline {
         }
           }
 
-      stage("Deploy"){
-            parallel{
-              stage("Frontend"){
-                steps{
-                  dir('gym-one-fr') {
-                    sh "pwd"
-                   sh "docker build -t frontend-app ."
-                   sh "docker run --name frontend-app-container -d -p 8090:80 frontend-app"
-                  }
+        stage("Deploy") {
+            parallel {
+                stage("Deploy Frontend") {
+                    steps {
+                        dir("gym-one-fr") {
+                            sh "docker build -t frontend-app ."
+                            sh "docker run --name frontend-app-container -d -p 8090:80 frontend-app"
+                        }
+                    }
                 }
-              }
-            }
           }
           }
-          }
+  }
+}
