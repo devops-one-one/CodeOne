@@ -56,6 +56,7 @@ pipeline {
               stage("Frontend"){
                 steps{
                   dir('gym-one-fr') {
+                    sh "pwd"
                    sh "docker build . -t frontend-app"
                    sh "docker run --name frontend-app-container -d -p 8091:80 frontend-app"
                   }
