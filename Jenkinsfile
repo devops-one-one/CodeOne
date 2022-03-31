@@ -74,6 +74,14 @@ pipeline {
                         }
                     }
                 }
+                stage("Deploy API") {
+                    steps {
+                        dir("GymOneBackend") {              
+                            sh "docker build -t gym-one-api ."
+                            sh "docker run --name gym-one-api-container -d -p 8091:80 gym-one-api"
+                        }
+                    }
+                }
           }
           }
   }
