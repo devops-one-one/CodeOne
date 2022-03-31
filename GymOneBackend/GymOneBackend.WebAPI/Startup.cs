@@ -41,9 +41,7 @@ namespace GymOneBackend.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-    services.AddAuthentication(
-        CertificateAuthenticationDefaults.AuthenticationScheme)
-        .AddCertificate();
+            services.AddCors();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -125,15 +123,20 @@ namespace GymOneBackend.WebAPI
                 new DbSeeder(context).SeedDevelopment();
             }
             
-            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
+            app.UseCors(x =>
+            {
+                x.AllowAnyMethod();
+                x.AllowAnyHeader();
+                x.SetIsOriginAllowed(o => true);
+                x.AllowCredentials();
+            });
             
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
             app.UseAuthorization();
-
-            app.UseAuthentication();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
