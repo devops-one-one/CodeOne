@@ -15,6 +15,17 @@ pipeline {
        // }
      // }
     //}
+
+          stage("Clean containers") {
+            steps {
+                script {
+                    try {
+                        sh "docker rm -f frontend-app-containe"
+                    }
+                    finally { }
+                }
+            }
+        }
     stage("Build API"){
       steps{
         sh "dotnet build GymOneBackend/GymOneBackend.sln"
@@ -47,7 +58,7 @@ pipeline {
       }
       stage("Discord Webhook"){
         steps{
-                discordSend description: 'Jenkins Pipeline Build', footer: 'Footer Text', image: 'https://i0.wp.com/www.imbored-letsgo.com/wp-content/uploads/2015/05/Classic-Creamy-Vanilla-Ice-Cream.jpg',link: env.BUILD_URL, result: currentBuild.currentResult, unstable: false, title: JOB_NAME, webhookURL: 'https://discord.com/api/webhooks/951841947276959745/0KkehKY4mDYFjXJKybgjDMfyAiIjsh0z8Iyklb77yGYpDxEShcnSaGjqpksiklnO16VZ'
+                discordSend description: 'Team Vanilla', footer: 'You wish', image: 'https://i0.wp.com/www.imbored-letsgo.com/wp-content/uploads/2015/05/Classic-Creamy-Vanilla-Ice-Cream.jpg',link: env.BUILD_URL, result: currentBuild.currentResult, unstable: false, title: JOB_NAME, webhookURL: 'https://discord.com/api/webhooks/951841947276959745/0KkehKY4mDYFjXJKybgjDMfyAiIjsh0z8Iyklb77yGYpDxEShcnSaGjqpksiklnO16VZ'
         }
           }
 
