@@ -28,7 +28,7 @@ pipeline {
         }
     stage("Build API"){
       steps{
-        sh "dotnet build GymOneBackend/GymOneBackend.sln"
+        sh "dotnet build --configuration Release"
       }
     }
 
