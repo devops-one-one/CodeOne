@@ -13,6 +13,7 @@ using GymOneBackend.Security.Helpers;
 using GymOneBackend.Security.IServices;
 using GymOneBackend.Security.Repositories;
 using GymOneBackend.Security.Services;
+using Microsoft.AspNetCore.Authentication.Certificate;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -40,6 +41,9 @@ namespace GymOneBackend.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+    services.AddAuthentication(
+        CertificateAuthenticationDefaults.AuthenticationScheme)
+        .AddCertificate();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -54,7 +58,6 @@ namespace GymOneBackend.WebAPI
                     In = ParameterLocation.Header,
                     Description = "JWT Authorization header using Bearer scheme"
                 });
-
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
                     {
@@ -129,6 +132,8 @@ namespace GymOneBackend.WebAPI
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
