@@ -21,6 +21,7 @@ pipeline {
                 script {
                     try {
                         sh "docker rm -f frontend-app-container"
+                        sh "docker rm -f gym-one-api-container"
                     }
                     finally { }
                 }
@@ -66,7 +67,7 @@ pipeline {
 
         stage("Deploy") {
             parallel {
-                stage("Deploy Frontend") {
+                stage("Frontend") {
                     steps {
                         dir("gym-one-fr") {
                             sh "docker build -t frontend-app ."
@@ -74,7 +75,7 @@ pipeline {
                         }
                     }
                 }
-                stage("Deploy API") {
+                stage("API") {
                     steps {
                         dir("GymOneBackend/GymOneBackend.WebAPI") {              
                             sh "docker build -t gym-one-api ."
