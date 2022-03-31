@@ -20,7 +20,7 @@ pipeline {
             steps {
                 script {
                     try {
-                        sh "docker rm -f frontend-app-containe"
+                        sh "docker rm -f frontend-app-container"
                     }
                     finally { }
                 }
