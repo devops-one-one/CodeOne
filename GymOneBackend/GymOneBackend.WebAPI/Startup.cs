@@ -123,6 +123,7 @@ namespace GymOneBackend.WebAPI
                 new DbSeeder(context).SeedDevelopment();
             }
             
+            app.UseRouting();
 
             app.UseCors(x =>
             {
@@ -133,8 +134,6 @@ namespace GymOneBackend.WebAPI
             });
             
             app.UseHttpsRedirection();
-
-            app.UseRouting();
 
             app.UseAuthorization();
 
