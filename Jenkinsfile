@@ -9,10 +9,10 @@ pipeline {
   stages{
     stage("Startup"){
       steps{
-        //buildDescription env.COMMITMSG
-        //dir("TestProject1"){
-          //sh "rm -rf TestResults"
-        }
+       // buildDescription env.COMMITMSG
+       // dir("TestProject1"){
+        //  sh "rm -rf TestResults"
+       // }
       }
     }
     stage("Build API"){
