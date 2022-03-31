@@ -7,14 +7,14 @@ pipeline {
     COMMITMSG = sh(returnStdout: true, script: "git log -1 --oneline")
   }
   stages{
-    stage("Startup"){
-      steps{
+    //stage("Startup"){
+      //steps{
        // buildDescription env.COMMITMSG
        // dir("TestProject1"){
         //  sh "rm -rf TestResults"
        // }
-      }
-    }
+      //}
+   // }
     stage("Build API"){
       steps{
         sh "dotnet build GymOneBackend/GymOneBackend.sln"
