@@ -15,6 +15,7 @@ pipeline {
         dir("GymOneBackend"){
         sh "dotnet build --configuration Release"
         }
+        echo"dockerizing api"
         sh "docker-compose build api"
       }
     }
