@@ -26,6 +26,7 @@ pipeline {
 
     stage("Build Frontend"){
           steps{
+              sh"pwd"
               sh "docker-compose build web"
       }
       }
