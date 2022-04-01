@@ -7,15 +7,6 @@ pipeline {
     COMMITMSG = sh(returnStdout: true, script: "git log -1 --oneline")
   }
   stages{
-    //stage("Startup"){
-      //steps{
-        //buildDescription env.COMMITMSG
-        //dir("TestProject1"){
-          //sh "rm -rf TestResults"
-       // }
-     // }
-    //}
-
     stage("Build API"){
       steps{
         dir("GymOneBackend"){
@@ -26,8 +17,9 @@ pipeline {
 
     stage("Build Frontend"){
           steps{
-              sh"pwd"
+              dir("gym-one-fr") {
               sh "docker-compose build web"
+              }
       }
       }
 
