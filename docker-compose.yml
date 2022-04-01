@@ -8,3 +8,10 @@ services:
     container_name: "frontend-app-container"
     ports:
       - "8090:80"
+  api:
+    image: "backend-api"
+    build:
+    context: "API"
+    container_name: "backend-api-container"
+    ports:
+      - "8091:80"
