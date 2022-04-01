@@ -1,6 +1,10 @@
 pipeline {
   agent any
 
+    environment {
+        DISCORD_WEBHOOK_URL = credentials('WEBHOOK_URL')
+    }
+
   triggers {
     pollSCM("* * * * *")
   }
@@ -10,7 +14,7 @@ pipeline {
       stage("Build API"){
       steps{
         dir("GymOneBackend"){
-        echo "DISCORD KEY: ${env.WEBHOOK_URL}"
+        echo "DISCORD KEY: ${DISCORD_WEBHOOK_URL}"
         sh "dotnet build --configuration Release"
         }
       }
