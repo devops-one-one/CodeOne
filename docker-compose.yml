@@ -2,16 +2,16 @@ version: "3.9"
 
 services:
   web:
-    image: "frontend-app"
     build:
-      context: "gym-one-fr"
+    context: "gym-one-fr"
+    image: "frontend-app"
     container_name: "frontend-app-container"
     ports:
       - "8090:80"
   api:
-    image: "backend-api"
     build:
     context: "GymOneBackend/GymOneBackend.WebAPI"
+    image: "backend-api"
     container_name: "backend-api-container"
     ports:
       - "8091:80"
