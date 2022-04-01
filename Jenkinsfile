@@ -37,7 +37,7 @@ pipeline {
               dir("gym-one-fr") {
               sh "npm update"
               sh "ng build"
-              sh "docker-compose -f -docker-compose.yml build web"
+              sh "docker-compose build web"
               }
       }
       }
