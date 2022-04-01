@@ -10,12 +10,21 @@ pipeline {
   }
 
   stages{
+
+    stage("Startup"){
+      steps{
+        dir("TestProject1"){
+          echo"CLEAR TESTS"
+          sh "rm -rf TestResults"
+        }
+      }
+    }
+
       stage("Build Backend"){
       steps{
         dir("GymOneBackend"){
         sh "dotnet build --configuration Release"
         }
-        echo"dockerizing api"
         sh "docker-compose build api"
       }
     }
