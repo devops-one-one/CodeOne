@@ -10,7 +10,7 @@ pipeline {
       stage("Build API"){
       steps{
         dir("GymOneBackend"){
-        sh "echo ${env.WEBHOOK_URL}"
+        echo "${env.WEBHOOK_URL}"
         sh "dotnet build --configuration Release"
         }
       }
