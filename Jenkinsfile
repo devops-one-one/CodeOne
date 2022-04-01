@@ -26,9 +26,7 @@ pipeline {
 
     stage("Build Frontend"){
           steps{
-            dir('gym-one-fr') {
               sh "docker-compose build web"
-              }
       }
       }
 
