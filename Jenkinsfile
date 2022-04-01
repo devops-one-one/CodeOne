@@ -8,13 +8,8 @@ pipeline {
   triggers {
     pollSCM("* * * * *")
   }
-  stages{
 
-        stage("Discord Webhook"){
-          steps{
-                  discordSend description: 'Team Vanilla', footer: 'You wish', image: 'https://i0.wp.com/www.imbored-letsgo.com/wp-content/uploads/2015/05/Classic-Creamy-Vanilla-Ice-Cream.jpg',link: env.BUILD_URL, result: currentBuild.currentResult, unstable: false, title: JOB_NAME, webhookURL: DISCORD_WEBHOOK_URL
-          }
-            }
+  stages{
 
       stage("Build API"){
       steps{
@@ -47,6 +42,12 @@ pipeline {
            
          }
       }
+
+      stage("Discord Webhook"){
+        steps{
+                discordSend description: 'Team Vanilla', footer: 'You wish', image: 'https://i0.wp.com/www.imbored-letsgo.com/wp-content/uploads/2015/05/Classic-Creamy-Vanilla-Ice-Cream.jpg',link: env.BUILD_URL, result: currentBuild.currentResult, unstable: false, title: JOB_NAME, webhookURL: DISCORD_WEBHOOK_URL
+        }
+          }
 
       stage("Clean containers") {
             steps {
