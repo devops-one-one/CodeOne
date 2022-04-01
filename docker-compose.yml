@@ -11,7 +11,7 @@ services:
   api:
     image: "backend-api"
     build:
-    context: "API"
+    context: "GymOneBackend/GymOneBackend.WebAPI"
     container_name: "backend-api-container"
     ports:
       - "8091:80"
