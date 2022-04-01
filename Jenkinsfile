@@ -17,18 +17,6 @@ pipeline {
     //}
 
     stage("Build API"){
-      when{
-      dir("GymOneBackend"){
-        anyOf {
-                    changeset "GymOneBackend.Core.Test/**"
-                    changeset "GymOneBackend.Core/**"
-                    changeset "GymOneBackend.Domain/**"
-                    changeset "GymOneBackend.Repository/**"
-                    changeset "GymOneBackend.Security/**"
-                    changeset "GymOneBackend.WebAPI/**"
-        }
-        }
-      }
       steps{
         dir("GymOneBackend"){
         sh "dotnet build --configuration Release"
