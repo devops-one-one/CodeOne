@@ -19,7 +19,7 @@ pipeline {
     stage("Build API"){
       when{
       dir("GymOneBackend"){
-        anyOf {jen
+        anyOf {
                     changeset "GymOneBackend.Core.Test/**"
                     changeset "GymOneBackend.Core/**"
                     changeset "GymOneBackend.Domain/**"
