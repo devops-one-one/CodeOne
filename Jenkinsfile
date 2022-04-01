@@ -20,9 +20,9 @@ pipeline {
     }
 
       stage("Build Frontend"){
-          when {
-              changeset "gym-one-fr/**"
-          }
+          //when {
+              //changeset "gym-one-fr/**"
+          //}
           steps{
               dir("gym-one-fr") {
               sh "docker-compose build web"

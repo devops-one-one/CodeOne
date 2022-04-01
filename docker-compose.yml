@@ -7,4 +7,4 @@ services:
       context: "gym-one-fr"
     container_name: "frontend-app-container"
     ports:
-      - "8090:80"
+      - "5090:80"
