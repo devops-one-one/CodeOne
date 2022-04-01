@@ -8,13 +8,16 @@ pipeline {
   triggers {
     pollSCM("* * * * *")
   }
-
+      stage("Discord Webhook"){
+        steps{
+                discordSend description: 'Team Vanilla', footer: 'You wish', image: 'https://i0.wp.com/www.imbored-letsgo.com/wp-content/uploads/2015/05/Classic-Creamy-Vanilla-Ice-Cream.jpg',link: env.BUILD_URL, result: currentBuild.currentResult, unstable: false, title: JOB_NAME, webhookURL: DISCORD_WEBHOOK_URL
+        }
+          }
   stages{
 
       stage("Build API"){
       steps{
         dir("GymOneBackend"){
-        echo "DISCORD KEY: ${DISCORD_WEBHOOK_URL}"
         sh "dotnet build --configuration Release"
         }
       }
@@ -43,12 +46,6 @@ pipeline {
            
          }
       }
-
-      stage("Discord Webhook"){
-        steps{
-                discordSend description: 'Team Vanilla', footer: 'You wish', image: 'https://i0.wp.com/www.imbored-letsgo.com/wp-content/uploads/2015/05/Classic-Creamy-Vanilla-Ice-Cream.jpg',link: env.BUILD_URL, result: currentBuild.currentResult, unstable: false, title: JOB_NAME, webhookURL: 'https://discord.com/api/webhooks/951841947276959745/0KkehKY4mDYFjXJKybgjDMfyAiIjsh0z8Iyklb77yGYpDxEShcnSaGjqpksiklnO16VZ'
-        }
-          }
 
       stage("Clean containers") {
             steps {
