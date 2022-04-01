@@ -16,18 +16,19 @@ pipeline {
      // }
     //}
 
-          stage("Clean containers") {
-            steps {
-                script {
-                    try {
-                        sh "docker rm -f frontend-app-container"
-                        sh "docker rm -f gym-one-api-container"
-                    }
-                    finally { }
-                }
-            }
-        }
     stage("Build API"){
+      when{
+        anyOf {
+          dir("GymOneBackend"){
+                    changeset "GymOneBackend.Core.Test/**"
+                    changeset "GymOneBackend.Core/**"
+                    changeset "GymOneBackend.Domain/**"
+                    changeset "GymOneBackend.Repository/**"
+                    changeset "GymOneBackend.Security/**"
+                    changeset "GymOneBackend.WebAPI/**"
+          }
+        }
+      }
       steps{
         dir("GymOneBackend"){
         sh "dotnet build --configuration Release"
@@ -38,8 +39,7 @@ pipeline {
     stage("Build Frontend"){
           steps{
             dir('gym-one-fr') {
-              sh "npm update"
-              sh "ng build --prod"
+              sh "docker-compose build web"
               }
       }
       }
@@ -65,24 +65,20 @@ pipeline {
         }
           }
 
+          stage("Clean containers") {
+            steps {
+                script {
+                    try {
+                        sh "docker-compose down"
+                    }
+                    finally { }
+                }
+            }
+        }
+
         stage("Deploy") {
-            parallel {
-                stage("Frontend") {
-                    steps {
-                        dir("gym-one-fr") {
-                            sh "docker build -t frontend-app ."
-                            sh "docker run --name frontend-app-container -d -p 8090:80 frontend-app"
-                        }
-                    }
-                }
-                stage("API") {
-                    steps {
-                        dir("GymOneBackend/GymOneBackend.WebAPI") {              
-                            sh "docker build -t gym-one-api ."
-                            sh "docker run --name gym-one-api-container -d -p 8091:80 gym-one-api"
-                        }
-                    }
-                }
+          steps{
+            sh "docker-compose up -d"
           }
           }
   }

@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  web:
+    image: "frontend-app"
+    build:
+      context: "gym-one-fr"
+    container_name: "frontend-app-container"
+    ports:
+      - "8090:80"
