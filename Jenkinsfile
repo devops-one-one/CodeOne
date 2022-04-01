@@ -10,11 +10,13 @@ pipeline {
   }
 
   stages{
-      stage("Build API"){
+      stage("Build Backend"){
       steps{
         dir("GymOneBackend"){
         sh "dotnet build --configuration Release"
         }
+        echo"dockerizing api"
+        sh "docker-compose build api"
       }
     }
 
@@ -31,7 +33,7 @@ pipeline {
       }
       }
 
-      stage("Unit Testing"){
+      stage("Unit Test"){
         steps{
           dir("GymOneBackend/GymOneBackend.Core.Test"){
             sh "dotnet add package coverlet.collector"
@@ -46,12 +48,6 @@ pipeline {
            
          }
       }
-
-      stage("Discord Webhook"){
-        steps{
-                discordSend description: 'Team Vanilla', footer: 'You wish', image: 'https://i0.wp.com/www.imbored-letsgo.com/wp-content/uploads/2015/05/Classic-Creamy-Vanilla-Ice-Cream.jpg',link: env.BUILD_URL, result: currentBuild.currentResult, unstable: false, title: JOB_NAME, webhookURL: DISCORD_WEBHOOK_URL
-        }
-          }
 
       stage("Clean containers") {
             steps {
@@ -68,6 +64,12 @@ pipeline {
           steps{
             sh "docker-compose up -d"
           }
+          }
+
+      stage("Discord Webhook"){
+          steps{
+                discordSend description: 'Team Vanilla', footer: 'You wish', image: 'https://i0.wp.com/www.imbored-letsgo.com/wp-content/uploads/2015/05/Classic-Creamy-Vanilla-Ice-Cream.jpg',link: env.BUILD_URL, result: currentBuild.currentResult, unstable: false, title: JOB_NAME, webhookURL: DISCORD_WEBHOOK_URL
+        }
           }
   }
 
