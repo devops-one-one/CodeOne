@@ -3,6 +3,7 @@ import {ExerciseService} from "./shared/exercise.service";
 import {ExerciseSetDto} from "./shared/exercise.set.dto";
 import {distinct} from "rxjs/operators";
 import {ExerciseDto} from "./shared/exercise.dto";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-exercises',
@@ -17,6 +18,12 @@ export class ExercisesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (environment.production) {
+      console.log("PRODUCTION")
+    }else{
+      console.log("DEVELOPMENT")
+    }
+
     this.inputDate = this.currentDateAsString();
     this.loadExercises();
   }
