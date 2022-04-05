@@ -36,7 +36,7 @@ pipeline {
           steps{
               dir("gym-one-fr") {
               sh "npm update"
-              sh "ng build --configuration=production"
+              sh "ng build --prod"
               sh "docker-compose build web"
               }
       }
