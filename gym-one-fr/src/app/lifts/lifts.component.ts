@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, enableProdMode, OnInit} from '@angular/core';
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-lifts',
