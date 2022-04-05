@@ -1,5 +1,5 @@
 export interface TokenDto {
   jwt: string;
-  message:string
+  message: string
   userId: number
 }
