@@ -75,7 +75,9 @@ pipeline {
           }
 
       stage("Push"){
+        steps{
             sh "docker-compose --env-file Config/Test.env push"
+          }
           }
 
       stage("Discord Webhook"){
