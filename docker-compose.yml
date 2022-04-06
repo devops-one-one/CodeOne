@@ -4,14 +4,14 @@ services:
   web:
     build:
       context: "gym-one-fr"
-    image: "frontend-app"
+    image: "localhost:7002/frontend-app:${IMAGE_TAG}"
     container_name: "${WEB_CONT_NAME}"
     ports:
       - "${WEB_PORT}:80"
   api:
     build:
       context: "GymOneBackend/GymOneBackend.WebAPI"
-    image: "backend-api"
+    image: "localhost:7002/backend-api${IMAGE_TAG}"
     container_name: "${API_CONT_NAME}"
     ports:
       - "${API_PORT}:80"

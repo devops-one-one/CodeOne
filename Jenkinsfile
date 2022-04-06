@@ -30,9 +30,9 @@ pipeline {
     }
 
       stage("Build Frontend"){
-          //when {
-              //changeset "gym-one-fr/**"
-          //}
+          when {
+              changeset "gym-one-fr/**"
+          }
           steps{
               dir("gym-one-fr") {
               sh "npm update"
@@ -72,6 +72,10 @@ pipeline {
           steps{
             sh "docker-compose --env-file Config/Test.env up -d"
           }
+          }
+
+      stage("Push"){
+            sh "docker-compose --env-file Config/Test.env push"
           }
 
       stage("Discord Webhook"){
