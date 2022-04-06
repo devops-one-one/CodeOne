@@ -28,9 +28,10 @@ namespace GymOneBackend.Security.Services
         
         public IConfiguration Configuration { get; }
         
-        public JwtToken GenerateJwtToken(string email, string password, out int userId)
+        public JwtToken GenerateJwtToken(string email, string password, out int userId, out string userName)
         {
             userId = -1;
+            userName = "";
             var user = _repo.GetAll().FirstOrDefault(user => user.Email.Equals(email));
             if(user == null)
                 return new JwtToken()
@@ -52,6 +53,7 @@ namespace GymOneBackend.Security.Services
                     signingCredentials: credentials
                 );
                 userId = user.Id;
+                userName = user.UserName;
                 return new JwtToken(
                 )
                 {
@@ -66,13 +68,14 @@ namespace GymOneBackend.Security.Services
             };
         }
 
-        public bool Create(string loginDtoEmail, string loginDtoPassword)
+        public bool Create(string loginDtoEmail, string loginDtoPassword, string userNameDto)
         {
             _authenticationHelper.CreatePasswordHash(loginDtoPassword,
                 out var hash, out var salt);
             return _repo.Create(new User
             {
                 Email = loginDtoEmail,
+                UserName = userNameDto,
                 PasswordHash = hash,
                 PasswordSalt = salt
             });

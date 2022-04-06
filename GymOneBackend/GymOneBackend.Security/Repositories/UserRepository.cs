@@ -26,6 +26,7 @@ namespace GymOneBackend.Security.Repositories
             {
                 Id = u.Id,
                 Email = u.Email,
+                UserName = u.UserName,
                 PasswordHash = u.PasswordHash,
                 PasswordSalt = u.PasswordSalt
             }).ToList();
@@ -36,6 +37,7 @@ namespace GymOneBackend.Security.Repositories
             var createdUser = _context.LoginUsers.Add(new LoginUser()
             {
                 Email = user.Email,
+                UserName = user.UserName,
                 PasswordHash = user.PasswordHash,
                 PasswordSalt = user.PasswordSalt
             });
@@ -44,6 +46,7 @@ namespace GymOneBackend.Security.Repositories
             _ctx.Users.Add(new UserEntity
             {
                 Email = user.Email,
+                UserName = user.UserName,
                 PasswordHash = user.PasswordHash,
                 PasswordSalt = user.PasswordSalt
             });

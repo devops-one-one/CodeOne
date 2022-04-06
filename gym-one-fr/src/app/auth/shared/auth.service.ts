@@ -5,11 +5,13 @@ import {BehaviorSubject, Observable, of} from "rxjs";
 import {LoginDto} from "./login.dto";
 import {environment} from "../../../environments/environment";
 import {take, tap} from "rxjs/operators";
+import {RegisterDto} from "./register.dto";
 
 
 const jwtToken = 'jwtToken';
 const userId = 'userId';
 const email = 'email';
+const userName = "userName"
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +31,7 @@ export class AuthService {
           if(token && token.jwt){
             localStorage.setItem(jwtToken, token.jwt);
             localStorage.setItem(userId, token.userId.toString());
-            localStorage.setItem(email, loginDto.email.toString());
+            localStorage.setItem(userName, token.userName);
             this.isLoggedIn$.next(token.jwt);
             this.isLoggedIn = true;
           }else {
@@ -48,15 +50,15 @@ export class AuthService {
     return of(true).pipe(take(1));
   }
 
-  register(loginDto: LoginDto): Observable<TokenDto>
+  register(registerDto: RegisterDto): Observable<TokenDto>
   {
-    return this._http.post<TokenDto>(environment.api+'/api/Auth/Register',loginDto)
+    return this._http.post<TokenDto>(environment.api+'/api/Auth/Register',registerDto)
       .pipe(
         tap(token =>{
           if(token && token.jwt){
             localStorage.setItem(jwtToken, token.jwt);
             localStorage.setItem(userId, token.userId.toString());
-            localStorage.setItem(email, loginDto.email.toString());
+            localStorage.setItem(userName, token.userName);
             this.isLoggedIn$.next(token.jwt);
             this.isLoggedIn = true;
           }else {
@@ -67,7 +69,7 @@ export class AuthService {
   }
 // you can use it if you want to show username :)
   getUserName(): string{
-    var emailAsString = localStorage.getItem(email);
+    var emailAsString = localStorage.getItem(userName);
     if(emailAsString) {
       return emailAsString;
     }
