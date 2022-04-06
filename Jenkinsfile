@@ -25,7 +25,7 @@ pipeline {
         dir("GymOneBackend"){
         sh "dotnet build --configuration Release"
         }
-        sh "docker-compose build api"
+        sh "docker-compose --env-file Config/Test.env build api"
       }
     }
 
@@ -37,8 +37,8 @@ pipeline {
               dir("gym-one-fr") {
               sh "npm update"
               sh "ng build --prod"
-              sh "docker-compose build web"
               }
+              sh "docker-compose --env-file Config/Test.env build web"
       }
       }
 
@@ -61,7 +61,7 @@ pipeline {
             steps {
                 script {
                     try {
-                        sh "docker-compose down"
+                        sh "docker-compose --env-file Config/Test.env down"
                     }
                     finally { }
                 }
@@ -70,7 +70,7 @@ pipeline {
 
       stage("Deploy") {
           steps{
-            sh "docker-compose up -d"
+            sh "docker-compose --env-file Config/Test.env up -d"
           }
           }
 
