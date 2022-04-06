@@ -17,7 +17,7 @@ export class ExerciseService {
       console.log('IS PRODUCTION');
       let url = '/config/api-url.txt';
       this.http.get<any>(url).subscribe((response) => {
-        console.log(response.data);
+        console.log(response.data.text());
       });
     }
   }
