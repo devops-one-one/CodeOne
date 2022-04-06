@@ -16,8 +16,8 @@ export class ExerciseService {
     if (environment.production) {
       console.log('IS PRODUCTION');
       let url = '/config/api-url.txt';
-      this.http.get<any>(url).subscribe((response) => {
-        console.log(response.data.text());
+      this.http.get(url, { responseType: 'text' }).subscribe((response) => {
+        console.log(response);
       });
     }
   }
