@@ -5,8 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import { ExerciseDto } from './exercise.dto';
-import { url } from 'inspector';
-import { env } from 'process';
+
 @Injectable({
   providedIn: 'root',
 })
