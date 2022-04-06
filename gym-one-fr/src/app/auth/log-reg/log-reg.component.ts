@@ -77,6 +77,7 @@ export class LogRegComponent implements OnInit {
           console.log('Token: ',token.jwt);
           console.log("userId: ", token.userId)
           console.log("userName: ", token.userName)
+          this.router.navigateByUrl('exercises')
         }else if (token && token.jwt == null){
           console.log('No token');
         }
@@ -86,7 +87,7 @@ export class LogRegComponent implements OnInit {
   register() {
     const registerDto = this.registerForm.value as RegisterDto;
     this._auth.register(registerDto).subscribe(tokenDto=> {
-      this.router.navigateByUrl("Feed me with some direction")
+      this.router.navigateByUrl('exercises')
     });
   }
 
