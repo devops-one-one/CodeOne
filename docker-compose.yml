@@ -11,7 +11,7 @@ services:
   api:
     build:
       context: "GymOneBackend/GymOneBackend.WebAPI"
-    image: "localhost:7002/backend-api${IMAGE_TAG}"
+    image: "localhost:7002/backend-api:${IMAGE_TAG}"
     container_name: "${API_CONT_NAME}"
     ports:
       - "${API_PORT}:80"
