@@ -11,14 +11,18 @@ import { env } from 'process';
   providedIn: 'root',
 })
 export class ExerciseService {
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) {}
+
+  doStuff() {
     if (environment.production) {
+      console.log('IS PRODUCTION');
       let url = '/config/api-url.txt';
       this.http.get<any>(url).subscribe((response) => {
         console.log(response.data);
       });
     }
   }
+
   getAllExerciseSets(userId: number): Observable<any> {
     return this.http.get<ExerciseSetDto>(
       `${environment.api}/api/ExerciseSet?userId=${userId}`
