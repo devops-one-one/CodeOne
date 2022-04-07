@@ -12,16 +12,6 @@ import { ExerciseDto } from './exercise.dto';
 export class ExerciseService {
   constructor(private http: HttpClient) {}
 
-  doStuff() {
-    if (environment.production) {
-      console.log('IS PRODUCTION');
-      let url = '/config/api-url.txt';
-      this.http.get(url, { responseType: 'text' }).subscribe((response) => {
-        console.log(response);
-      });
-    }
-  }
-
   getAllExerciseSets(userId: number): Observable<any> {
     return this.http.get<ExerciseSetDto>(
       `${environment.api}/api/ExerciseSet?userId=${userId}`
