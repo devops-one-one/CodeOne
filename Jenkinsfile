@@ -6,7 +6,7 @@ pipeline {
     }
 
   triggers {
-    pollSCM("* * * * *")
+    pollSCM("H/5 * * * *")
   }
 
   stages{
@@ -21,6 +21,16 @@ pipeline {
     }
 
       stage("Build Backend"){
+          when {
+                anyOf {
+                    changeset "GymOneBackend/GymOneBackend.Core.Test/**"
+                    changeset "GymOneBackend/GymOneBackend.Core/**"
+                    changeset "GymOneBackend/GymOneBackend.Domain/**"
+                    changeset "GymOneBackend/GymOneBackend.GymOneBackend.Repository/**"
+                    changeset "GymOneBackend/GymOneBackend.GymOneBackend.Security/**"
+                    changeset "GymOneBackend/GymOneBackend.GymOneBackend.WebAPI/**"
+                }
+          }
       steps{
         dir("GymOneBackend"){
         sh "dotnet build --configuration Release"
@@ -74,7 +84,7 @@ pipeline {
           }
           }
 
-      stage("Push"){
+      stage("Push to registry"){
         steps{
             sh "docker-compose --env-file Config/Test.env push"
           }
