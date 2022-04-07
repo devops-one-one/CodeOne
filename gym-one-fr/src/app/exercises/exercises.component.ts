@@ -17,7 +17,7 @@ export class ExercisesComponent implements OnInit {
   constructor(private _exerciseService: ExerciseService) {}
 
   ngOnInit(): void {
-    this._exerciseService.doStuff();
+    console.log(environment.api);
     this.inputDate = this.currentDateAsString();
     this.loadExercises();
   }
