@@ -6,7 +6,7 @@ pipeline {
     }
 
   triggers {
-    pollSCM("* * * * *")
+    pollSCM("H/5 * * * *")
   }
 
   stages{
@@ -21,11 +21,21 @@ pipeline {
     }
 
       stage("Build Backend"){
+          when {
+                anyOf {
+                    changeset "GymOneBackend/GymOneBackend.Core.Test/**"
+                    changeset "GymOneBackend/GymOneBackend.Core/**"
+                    changeset "GymOneBackend/GymOneBackend.Domain/**"
+                    changeset "GymOneBackend/GymOneBackend.GymOneBackend.Repository/**"
+                    changeset "GymOneBackend/GymOneBackend.GymOneBackend.Security/**"
+                    changeset "GymOneBackend/GymOneBackend.GymOneBackend.WebAPI/**"
+                }
+          }
       steps{
         dir("GymOneBackend"){
         sh "dotnet build --configuration Release"
         }
-        sh "docker-compose build api"
+        sh "docker-compose --env-file Config/Test.env build api"
       }
     }
 
@@ -36,9 +46,9 @@ pipeline {
           steps{
               dir("gym-one-fr") {
               sh "npm update"
-              sh "ng build"
-              sh "docker-compose build web"
+              sh "ng build --prod"
               }
+              sh "docker-compose --env-file Config/Test.env build web"
       }
       }
 
@@ -61,7 +71,7 @@ pipeline {
             steps {
                 script {
                     try {
-                        sh "docker-compose down"
+                        sh "docker-compose --env-file Config/Test.env down"
                     }
                     finally { }
                 }
@@ -70,7 +80,13 @@ pipeline {
 
       stage("Deploy") {
           steps{
-            sh "docker-compose up -d"
+            sh "docker-compose --env-file Config/Test.env up -d"
+          }
+          }
+
+      stage("Push to registry"){
+        steps{
+            sh "docker-compose --env-file Config/Test.env push"
           }
           }
 

@@ -121,7 +121,17 @@ namespace GymOneBackend.WebAPI
                     "GymOneBackend.WebAPI v1"));
                 //new DbSeeder(context).SeedDevelopment(1);
                 new DbSeeder(context).SeedDevelopment();
+            }else if (env.IsProduction())
+            {
+                app.UseDeveloperExceptionPage();
+                new SecuritySeeder().Initialize(securityContext);
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json",
+                    "GymOneBackend.WebAPI v1"));
+                //new DbSeeder(context).SeedDevelopment(1);
+                new DbSeeder(context).SeedDevelopment();
             }
+            
             
             app.UseRouting();
 
