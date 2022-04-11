@@ -1,6 +1,6 @@
 <div [ngClass]="{'right-panel-active': isFavorite }" class="container" id="container">
   <div class="form-container sign-up-container">
-    <form action="#">
+    <form action="#" [formGroup]="registerForm" (ngSubmit)="register()">
       <h1>Create Account</h1>
       <div class="social-container">
         <a href="#" class="social"><i class="fab fa-facebook-f"></i><img src="../../assets/social/facebook_96px.png" class="img-size"></a>
@@ -8,14 +8,42 @@
         <a href="#" class="social"><i class="fab fa-linkedin-in"></i><img src="../../assets/social/linkedin_96px.png" class="img-size"></a>
       </div>
       <span>or use your email for registration</span>
-      <input type="text" placeholder="Name" />
-      <input type="email" placeholder="Email" />
-      <input type="password" placeholder="Password" />
+      <input class="user Name" id="userName" type="text" formControlName="userName"  placeholder="User Name" />
+      <div *ngIf="userName && userName.invalid && (userName.dirty || userName.touched)"
+           class="alert alert-danger">
+        <div *ngIf="userName.errors?.required">
+          Name is required.
+        </div>
+        <div *ngIf="userName.errors?.maxLength">
+          User Name must be maximum 20 characters long.
+        </div>
+      </div>
+      <input class="emailField field" placeholder="Email" id="emailR" type="text" formControlName="email" />
+      <div *ngIf="email && email.invalid && (email.dirty || email.touched)"
+           class="alert alert-danger">
+        <div *ngIf="email.errors?.required">
+          Email is required.
+        </div>
+        <div *ngIf="email.errors?.maxLength">
+          Email must be maximum 20 characters long.
+        </div>
+      </div>
+      <input class="passwordField field" placeholder="Password" id="passwordR" type="password" formControlName="password"/>
+      <div *ngIf="password && password.invalid && (password.dirty || password.touched)"
+           class="alert alert-danger">
+        <div *ngIf="password.errors?.required">
+          Password is required.
+        </div>
+        <div *ngIf="password.errors?.minlength">
+          Password must be minimum 6 characters long.
+        </div>
+      </div>
       <button class="pointer">Sign Up</button>
     </form>
   </div>
+
   <div class="form-container sign-in-container">
-    <form action="#">
+    <form action="#" [formGroup]="loginForm" (ngSubmit)="login()">
       <h1>Sign in</h1>
       <div class="social-container">
         <a href="#" class="social"><i class="fab fa-facebook-f"></i><img src="../../assets/social/facebook_96px.png" class="img-size"></a>
@@ -23,11 +51,24 @@
         <a href="#" class="social"><i class="fab fa-linkedin-in"></i><img src="../../assets/social/linkedin_96px.png" class="img-size"></a>
       </div>
       <span>or use your account</span>
-      <input type="email" placeholder="Email" />
-      <input type="password" placeholder="Password" />
+      <input type="email" placeholder="Email" id="email" type="text" formControlName="email" />
+      <div *ngIf="email && email.invalid && (email.dirty || email.touched)"
+           class="alert alert-danger">
+        <div *ngIf="email.errors?.required">
+          Email is required.
+        </div>
+      </div>
+      <input class="passwordField field" placeholder="Password" id="password" type="password" formControlName="password" />
+      <div *ngIf="password && password.invalid && (password.dirty || password.touched)"
+           class="alert alert-danger">
+        <div *ngIf="password.errors?.required">
+          Password is required.
+        </div>
+      </div>
       <a href="#">Forgot your password?</a>
-      <button class="pointer">Sign In</button>
+      <button href="#" class="loginButton" id="login" type="submit">Sign In</button>
     </form>
+
   </div>
   <div class="overlay-container">
     <div class="overlay">

@@ -27,6 +27,7 @@ namespace GymOneBackend.Security
             context.LoginUsers.Add(new LoginUser()
             {
                 Email = "user1",
+                UserName = "userName1",
                 PasswordHash = pass,
                 PasswordSalt = salt,
             });
@@ -38,6 +39,7 @@ namespace GymOneBackend.Security
             context.LoginUsers.Add(new LoginUser()
             {
                 Email = "user2",
+                UserName = "userName2",
                 PasswordHash = pass2,
                 PasswordSalt = salt2,
             });
